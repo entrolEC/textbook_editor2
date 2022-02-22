@@ -1,0 +1,161 @@
+{
+	"textbook_title": "게임 만들기 2",
+	"textbook_subtitle": {
+		"stage": "Pioneer",
+		"language": "Javascript",
+		"level": "2"
+	},
+	"textbook_summary": {
+		"summary_image_src": "",
+		"summary_text": ""
+	},
+	"textbook_contents": [
+		{
+			"step_title": "준비하기",
+			"step_no": 0,
+			"step_items": [
+				{
+					"title": "폴더 준비하기",
+					"tags": [],
+					"collapse": false,
+					"components": [
+						{
+							"type": "desc",
+							"description": "<p>교재를 만들기 전, 폴더를 하나 준비합니다.</p><p><br></p><p>폴더의 이름은 다음과 같은 형식으로 합니다.</p><p><br></p><p>언어_레벨_순번_교재이름</p><p><span style=\"color: black;\">ex) javascript_lv1_1_datatypes</span></p><p><br></p><p><span style=\"color: black;\">여기서는 textbook_lv0_1_tutorial로 하겠습니다</span></p>"
+						},
+						{
+							"type": "image",
+							"name": "",
+							"src": "Textbook_lv0_0_tutorial/스크린샷 2022-02-15 오후 2.59.47.png"
+						},
+						{
+							"type": "desc",
+							"description": "<p><br></p><p><br></p><p>이 폴더에 교재에 필요한 파일을 추가해줍니다.</p><p>(이미지, gif, 스켈레톤파일 등)</p>"
+						},
+						{
+							"type": "desc",
+							"description": "<p><br></p><p><br></p><p>교재를 제작하며 추가해도 됩니다!</p>"
+						}
+					]
+				}
+			]
+		},
+		{
+			"step_title": "교재 제작",
+			"step_no": 1,
+			"step_items": [
+				{
+					"title": "스탭, 아이템 추가하기",
+					"tags": [],
+					"collapse": false,
+					"components": [
+						{
+							"type": "image",
+							"name": "",
+							"src": "Textbook_lv0_0_tutorial/add_step.gif"
+						},
+						{
+							"type": "desc",
+							"description": "<p>왼쪽 위의 \"open버튼\"을 눌러 sidebar를 열어보세요.</p><p><br></p><p>\"스탭 추가\" 버튼을 눌러 스탭을 추가합니다.</p><p><br></p><p>\"아이템 추가\" 버튼을 눌러 아이템을 추가합니다.</p>"
+						}
+					]
+				},
+				{
+					"title": "설명 추가",
+					"tags": [],
+					"collapse": false,
+					"components": [
+						{
+							"type": "image",
+							"name": "",
+							"src": "Textbook_lv0_0_tutorial/add_desc.gif"
+						},
+						{
+							"type": "desc",
+							"description": "<p>아래의 에디터에서 설명을 입력합니다.</p><p><br></p><p><strong>원하는 글씨</strong>로 바꾸고 <strong>원하는 위치에 \"desc추가\" 버튼</strong>을 눌러 설명을 추가합니다.</p>"
+						}
+					]
+				},
+				{
+					"title": "이미지 추가",
+					"tags": [],
+					"collapse": false,
+					"components": [
+						{
+							"type": "image",
+							"name": "",
+							"src": "Textbook_lv0_0_tutorial/add_image.gif"
+						},
+						{
+							"type": "desc",
+							"description": "<p>이미지를 처음 만들었던 폴더에 준비해둡니다.</p><p><br></p><p>이미지 선택의 <strong>\"파일 선택\" 버튼</strong>을 눌러 이미지를 선택하고</p><p><br></p><p>원하는 위치에<strong> image추가 버튼</strong>을 눌러 이미지를 추가합니다.</p>"
+						},
+						{
+							"type": "desc",
+							"description": "<p><br></p><p><br></p><p><strong><em>폴더의 이름이 바뀌면, 이미지가 제대로 보이지 않거나 완성된 교재의 이미지가 보이지 않을 수 있으니 주의해주세요.</em></strong></p>"
+						}
+					]
+				},
+				{
+					"title": "코드 추가",
+					"tags": [],
+					"collapse": false,
+					"components": [
+						{
+							"type": "image",
+							"name": "",
+							"src": "Textbook_lv0_0_tutorial/add_code.gif"
+						},
+						{
+							"type": "desc",
+							"description": "<p><br></p><p>언어를 선택한 뒤, <strong>아래의 텍스트를 더블클릭</strong>하여 준비한 코드를 붙여넣습니다.</p><p><br></p><p>그 다음, 원하는 위치에 <strong>\"code 추가\" 버튼을 눌러 code를 추가</strong>합니다.</p>"
+						},
+						{
+							"type": "code",
+							"code": "~~~cpp \n    for(long long i = 0; i < m + k; i++) {\n        long long a, b, c;\n        cin >> a >> b >> c;\n        if(a == 1) {\n            long long gap = c - nums[b-1];\n            nums[b-1] = c;\n            update(0, n - 1, 1, b-1, gap);\n\n        } else {\n            cout << sum(0, n - 1, 1, b-1, c-1) << '\\n';\n        }\n    }\n\n ~~~"
+						},
+						{
+							"type": "desc",
+							"description": "<p>(위의 코드는 예시입니다)</p>"
+						}
+					]
+				}
+			]
+		},
+		{
+			"step_title": "저장, 로드 하기",
+			"step_no": 2,
+			"step_items": [
+				{
+					"title": "저장하기",
+					"tags": [],
+					"collapse": false,
+					"components": [
+						{
+							"type": "desc",
+							"description": "<p>저장은 자동저장과 수동저장이 있습니다.</p><p><br></p><p>자동저장은 어떠한 항목을 추가하면 (스탭, 아이템, 설명 등) 자동으로 저장이 되며, 나중에 사이드 바의 \"퀵로드\" 버튼으로 불러올 수 있습니다.</p><p><br></p><p><br></p><p><br></p><p>수동 저장은 \"json 변환\" 버튼을 통해 저장하고 나중에 사이드 바의 \"json파일 로드\" 버튼으로 불러올 수 있습니다.</p>"
+						}
+					]
+				}
+			]
+		},
+		{
+			"step_title": "완성된 교재 수정",
+			"step_no": 3,
+			"step_items": [
+				{
+					"title": "json 로드하기",
+					"tags": [],
+					"collapse": false,
+					"components": [
+						{
+							"type": "desc",
+							"description": "<p>완성된 교재를 수정하려면, 우선 json을 로드해주세요.</p><p><br></p>"
+						}
+					]
+				}
+			]
+		}
+	],
+	"textbook_folder": "dino2"
+}
