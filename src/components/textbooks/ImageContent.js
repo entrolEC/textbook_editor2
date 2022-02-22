@@ -1,9 +1,12 @@
-import React, {useEffect, useMemo} from 'react'
+import React, {useEffect, useMemo, useContext} from 'react'
 import DisplayImage from './DisplayImage';
 import reactHtmlParser from 'react-html-parser';
+import { ImageContext } from 'contexts/ImageContext';
 
 export const ImageContent = ({components_item, index, hoverItemIndex, setHoverItemIndex, loadImage, count_for_key, selectedImage, setSelectedImage, ButtonGroup}) => {
-  const image = useMemo(()=>loadImage(components_item.src),[components_item]);
+  const { imageLib, setImageLib, addImageLib } = useContext(ImageContext);
+  //const image = useMemo(()=>loadImage(components_item.src),[components_item]);
+  const image = useMemo(()=>imageLib.get(components_item.src),[components_item, imageLib]);
   // console.log("dirname : ",__dirname)
   return (
     <div key={components_item.src+count_for_key} onMouseEnter={() => {setHoverItemIndex(index)}} onMouseLeave={() => {setHoverItemIndex(null)}}>

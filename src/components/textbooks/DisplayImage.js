@@ -1,13 +1,11 @@
 import { render } from "@testing-library/react";
 import { saveImage } from "helpers/electronFileSystem";
-import React, { useState, useCallback, useRef, Component } from "react";
-import ReactCrop from 'react-image-crop'
+import React, { useState, useCallback, useRef, useContext } from "react";
+import { ImageContext } from 'contexts/ImageContext';
 import "react-image-crop/dist/ReactCrop.css";
 
 const DisplayImage = (props) => {
-  const [crop, setCrop] = useState({ unit: '%', width: 30, height:30});
-  const [upImg, setUpImg] = useState();
-  const [completedCrop, setCompletedCrop] = useState(null);
+  const { imageLib, setImageLib, addImageLib } = useContext(ImageContext);
 
   const imgRef = useRef(null);
 
@@ -38,12 +36,10 @@ const DisplayImage = (props) => {
       
       console.log(name);
 
-      const reader = new FileReader(); // set image for crop
-      reader.addEventListener('load', () => {setUpImg(reader.result)});
-      reader.readAsDataURL(event.target.files[0]);
-
-      saveImage(name, await toBase64(img)); // save binary image to storage
+      const binary = await toBase64(img)
+      //saveImage(name, await toBase64(img)); // save binary image to storage
       props.setSelectedImage(name)
+      addImageLib(name, binary);
     }
   };
 

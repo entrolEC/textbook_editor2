@@ -22,6 +22,7 @@ import { DefaultTextbook }  from "./DefaultTextbook";
 //import ClassroomEventPopup from '../ClassroomEventPopup';
 
 import { TextbookContext } from "contexts/TextbookContext";
+import { ImageContext } from "contexts/ImageContext";
 
 import { saveTextbook, loadTextbook } from "helpers/electronFileSystem";
 
@@ -48,17 +49,13 @@ const NewClassroom = () =>{
     const [stepsList, setStepsList] = useState([]);
     const [stepsListLength, setStepsListLength] = useState(null);
     
-    //const [lastTextbook, setLastTextbook] = useState(studentInfo?.current_textbook);
-    const [fromTeacherTrigger, setTrigger] = useState(false);
-    const [isCouponModalOpen, setIsCouponModalOpen] = useState(false);
-
-    const [textbookId, setTextbookId] = useState(null);
-
     const [JSONBook, setJSONBook] = useState(tutorial);
 
     const [stepIndex, setStepIndex] = useState(0);
     const [itemIndex, setItemIndex] = useState(0);
     const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
+
+    const [imageLib, setImageLib] = useState(new Map());
 
     //===========================================USE EFFECT=============================================//
     // useEffect(()=>{
@@ -258,8 +255,18 @@ const NewClassroom = () =>{
       forceUpdate();
     }
 
-    const value = useMemo(() => ({ stepIndex, itemIndex, setIndex, addDescription, addImage, addCode, addTable, deleteDescription, addStep, deleteStep, addItem, deleteItem}), 
-    [stepIndex, itemIndex, setIndex, addDescription, addImage, addCode, addTable, deleteDescription, addStep, deleteStep, addItem, deleteItem]);
+    const addImageLib = (key, value) => {
+      console.log("image added", key);
+      setImageLib((prev) => new Map([...prev, [key, value]]));
+    };
+
+    const textbookContextValue = useMemo(() => ({ 
+      stepIndex, itemIndex, setIndex, addDescription, addImage, addCode, addTable, deleteDescription, addStep, deleteStep, addItem, deleteItem}
+      ), [stepIndex, itemIndex, setIndex, addDescription, addImage, addCode, addTable, deleteDescription, addStep, deleteStep, addItem, deleteItem]);
+
+    const imageContextValue = useMemo(() => ({ 
+      imageLib, setImageLib, addImageLib
+    }),[imageLib, setImageLib, addImageLib]);
 
     if(stepsList.length === 0) {
       return null;
@@ -276,26 +283,28 @@ const NewClassroom = () =>{
             
             <div className="new-classroom fit-app">
                 {/* <ClassroomHeader firstName={"교재 제작 툴"}/> */}
-                <TextbookContext.Provider value={value}>
-                  <TextbookSidebar 
-                      toggleSidebar={setSidebarOpen}
-                      textbookOnClickCallback={null}
-                      isOpen = {sidebarOpen}
-                      currentTextbook = {Textbook}
-                      JSONBook = {JSONBook}
-                      setJSONBook = {setJSONBook}
-                      stepIndicator = {stepIndicator}
-                      setStepIndicator = {setStepIndicator}
-                      lastTextbook={Textbook}/>
-                  <div className="classroom-textbook-header">
-                      <span onClick={()=>{setSidebarOpen(true)}} className="material-icons-outlined textbook-sidebar-toggle">open</span>
-                      {Textbook? Textbook.name : null}
-                  </div>
-                  {/* <ToolBar history={null} getTextbook={null} setTrigger={setTrigger} toggleCouponModal={()=>setIsCouponModalOpen(!isCouponModalOpen)} /> */}
-                  <ClassroomFooter maxIndex={stepsListLength} stepIndicator={stepIndicator} setStepIndicator={setStepIndicator}/>
-                  {<TextbookContentView JSONLoading={false} data={stepsList? stepsList[stepIndicator] : null} />}
-                  
-                </TextbookContext.Provider>
+                <ImageContext.Provider value={imageContextValue}>
+                  <TextbookContext.Provider value={textbookContextValue}>
+                    <TextbookSidebar 
+                        toggleSidebar={setSidebarOpen}
+                        textbookOnClickCallback={null}
+                        isOpen = {sidebarOpen}
+                        currentTextbook = {Textbook}
+                        JSONBook = {JSONBook}
+                        setJSONBook = {setJSONBook}
+                        stepIndicator = {stepIndicator}
+                        setStepIndicator = {setStepIndicator}
+                        lastTextbook={Textbook}/>
+                    <div className="classroom-textbook-header">
+                        <span onClick={()=>{setSidebarOpen(true)}} className="material-icons-outlined textbook-sidebar-toggle">open</span>
+                        {Textbook? Textbook.name : null}
+                    </div>
+                    {/* <ToolBar history={null} getTextbook={null} setTrigger={setTrigger} toggleCouponModal={()=>setIsCouponModalOpen(!isCouponModalOpen)} /> */}
+                    <ClassroomFooter maxIndex={stepsListLength} stepIndicator={stepIndicator} setStepIndicator={setStepIndicator}/>
+                    {<TextbookContentView JSONLoading={false} data={stepsList? stepsList[stepIndicator] : null} />}
+                    
+                  </TextbookContext.Provider>
+                </ImageContext.Provider>
             </div>
         </>
     )

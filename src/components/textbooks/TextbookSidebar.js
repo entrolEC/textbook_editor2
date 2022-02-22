@@ -1,6 +1,8 @@
-import React, { useCallback, useEffect, useReducer, useState } from 'react';
+import React, { useCallback, useEffect, useReducer, useState, useContext } from 'react';
 import TextbookBrowser from "./TextbookBrowser";
 import TextbookOutline from "./TextbookOutline";
+
+import { ImageContext } from 'contexts/ImageContext';
 
 import { saveImage, loadImage, saveTextbook, loadTextbook } from "helpers/electronFileSystem";
 // import { useSelector, shallowEqual } from 'react-redux';
@@ -49,6 +51,8 @@ const TextbookSidebar = ({
     const [selectedTextbookLevel, setSelectedTextbookLevel] = useState(0);
     const [selectedOrderNum, setSelectedOrderNum] = useState(0);
 
+    const { imageLib, setImageLib, addImageLib } = useContext(ImageContext);
+
     const downloadJson = () => {
       const saveText = JSON.stringify(JSONBook, null, "\t");
 
@@ -88,7 +92,9 @@ const TextbookSidebar = ({
           folders = file.path.split('/');
           name = folders[folders.length-2] + "/" + folders[folders.length-1];
         }
-        saveImage(name, await toBase64(file));
+        //saveImage(name, await toBase64(file));
+        const binary = await toBase64(file);
+        addImageLib(name, binary);
         console.log(name);
       }
     }
