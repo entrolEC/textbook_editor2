@@ -1,6 +1,6 @@
 {
   "name": "textbook_editor2",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "main": "public/Main.js",
   "homepage": "./",
@@ -46,8 +46,8 @@
     "//": "윈도우즈 유저의경우 위 커맨드를 \"set ELECTRON_START_URL=http://localhost:3000 && electron .\" 이렇게 사용해주셔야합니다.",
     "electron-start": "ELECTRON_START_URL=http://localhost:3000 electron .",
     "electron-pack": "yarn build && electron-builder build -c.extraMetadata.main=build/Main.js",
-    "deploy":"electron-builder --windows nsis:ia32",
-    "deploy:mac":"electron-builder --mac"
+    "deploy": "electron-builder --windows nsis:ia32",
+    "deploy:mac": "electron-builder --mac"
   },
   "eslintConfig": {
     "extends": [

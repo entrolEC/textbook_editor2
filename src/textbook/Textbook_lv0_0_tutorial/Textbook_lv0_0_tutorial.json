@@ -26,7 +26,7 @@
 						{
 							"type": "image",
 							"name": "",
-							"src": "NSIRD_screencaptureui_0zs3v6/스크린샷 2022-02-15 오후 2.59.47.png"
+							"src": "Textbook_lv0_0_tutorial/folder.png"
 						},
 						{
 							"type": "desc",
@@ -151,6 +151,57 @@
 						{
 							"type": "desc",
 							"description": "<p>완성된 교재를 수정하려면, 우선 json을 로드해주세요.</p><p><br></p>"
+						},
+						{
+							"type": "image",
+							"name": "",
+							"src": "Textbook_lv0_0_tutorial/load_json.gif"
+						}
+					]
+				},
+				{
+					"title": "이미지 로드하기",
+					"tags": [],
+					"collapse": false,
+					"components": [
+						{
+							"type": "image",
+							"name": "",
+							"src": "Textbook_lv0_0_tutorial/load_single_image.gif"
+						}
+					]
+				},
+				{
+					"title": "이미지 전부 로드하기",
+					"tags": [],
+					"collapse": false,
+					"components": [
+						{
+							"type": "image",
+							"name": "",
+							"src": "Textbook_lv0_0_tutorial/load_all_images.gif"
+						}
+					]
+				}
+			]
+		},
+		{
+			"step_title": "json 편집하기",
+			"step_no": 4,
+			"step_items": [
+				{
+					"title": "제목 추가하기",
+					"tags": [],
+					"collapse": false,
+					"components": [
+						{
+							"type": "desc",
+							"description": "<p>Json 변환을 마치고, 완성된 json을 열어봅니다.</p><p><strong>textbook_title</strong></p><p><strong>textbook_subtitle</strong></p><p>안의 내용을 교재에 맞게 수정합니다.</p>"
+						},
+						{
+							"type": "image",
+							"name": "",
+							"src": "Textbook_lv0_0_tutorial/edit_json.png"
 						}
 					]
 				}

@@ -22,9 +22,8 @@ import Button from 'components/Button';
 import { Field } from 'components/textbooks/Field';
 import { CodeLanguageSelectBox } from './CodeLanguageSelectBox';
 
-import Modal from 'components/Modal'
 import { ImageContent } from 'components/textbooks/ImageContent';
-
+import { DescContent } from 'components/textbooks/DescContent';
 
 const URL = API_PROTOCOL + API_URL;
 
@@ -47,22 +46,7 @@ const TextbookContentView = ({
       console.log("selectedImageName : ", selectedImage);
     },[selectedImage])
 
-    const readFile = () => {
-      const fs = window.require('fs');
 
-      const dir = "/Users/eui-chan/Documents/tonysCoding/textbook_simulator_edited/textbook/guessNumber"
-      const files = fs.readdirSync(dir)
-
-      for (const file of files) {
-        console.log(file)
-      }
-
-      // fs.readFile('/Users/eui-chan/Documents/tonysCoding/textbook_simulator_edited/textbook/guessNumber/input.gif', function(err, data) {
-      //   console.log(data);
-      //   setImage(Buffer.from(data).toString('base64'));
-      //   console.log(Buffer.from(data).toString('base64'))
-      // })
-    }
 
 
       // const files = fs.readdirSync(dir)
@@ -81,8 +65,8 @@ const TextbookContentView = ({
       setCode(e.currentTarget.value);
     }
 
-    const handleText = (text) => {
-      setText(text);
+    const handleText = (newText) => {
+      setText(newText);
     }
 
     const ButtonGroup = ({index}) => (
@@ -108,13 +92,23 @@ const TextbookContentView = ({
             if (type === "desc"){
                 count_for_key += 1;
                 return (
-                    <div className={"body-desc"} key={components_item.description+count_for_key} onMouseEnter={() => {setHoverItemIndex(index)}} onMouseLeave={() => {setHoverItemIndex(null)}}>
-                        <div>
-                            <Markdown children={components_item.description} rehypePlugins={[rehypeRaw]} />
-                        </div>
-                        {hoverItemIndex === index && <ButtonGroup index={index}/>}
+                  <>
+                    <DescContent
+                      components_item={components_item} 
+                      index={index} 
+                      hoverItemIndex={hoverItemIndex}
+                      setHoverItemIndex={setHoverItemIndex} 
+                      count_for_key={count_for_key} 
+                      ButtonGroup={ButtonGroup}
+                    />
+                  </>
+                    // <div className={"body-desc"} key={components_item.description+count_for_key} onMouseEnter={() => {setHoverItemIndex(index)}} onMouseLeave={() => {setHoverItemIndex(null)}}>
+                    //     <div>
+                    //         <Markdown children={components_item.description} rehypePlugins={[rehypeRaw]} />
+                    //     </div>
+                    //     {hoverItemIndex === index && <ButtonGroup index={index}/>}
                         
-                    </div>
+                    // </div>
                 );
             }
             else if (type === "table"){
@@ -228,7 +222,7 @@ const TextbookContentView = ({
               {/* <button onClick={() => {setImageModalVisible(true)}}>modal</button> */}
               <DisplayImage selectedImage={selectedImage} setSelectedImage={setSelectedImage}/>
               <hr></hr>
-              <CustomToolbar/>
+              {/* <CustomToolbar/> */}
               <Editor placeholder={"이곳에 desc 입력"} text={text} handleChange={handleText}/>
               <hr></hr>
               <CodeLanguageSelectBox options={OPTIONS} defaultValue="python" setCodeLanguage={setCodeLanguage}></CodeLanguageSelectBox>;

@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import 'assets/css/CustomToolbar.css'
 import { TextbookContext } from "contexts/TextbookContext";
 
@@ -7,10 +7,13 @@ const CustomHeart = () => <span>♥</span>;
 const CustomToolbar = ({complete, changeFolder, step_no, idx}) => {
 
   const { stepIndex, itemIndex } = useContext(TextbookContext);
+  useEffect(() => {
+    console.log("#toolbar"+stepIndex+itemIndex);
+  }, [stepIndex, itemIndex]);
 
   // console.log("customToolbar", stepIndex);
   return (
-  <div id={"toolbar"+stepIndex+itemIndex}>
+  <div id={"toolbar"}>
     <span className="ql-formats">
       <select className="ql-font"></select>
       <select className="ql-size"></select>

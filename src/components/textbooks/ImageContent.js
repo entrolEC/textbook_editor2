@@ -6,6 +6,7 @@ import { ImageContext } from 'contexts/ImageContext';
 export const ImageContent = ({components_item, index, hoverItemIndex, setHoverItemIndex, loadImage, count_for_key, selectedImage, setSelectedImage, ButtonGroup}) => {
   const { imageLib, setImageLib, addImageLib } = useContext(ImageContext);
   //const image = useMemo(()=>loadImage(components_item.src),[components_item]);
+  console.log("image rerenderd")
   const image = useMemo(()=>imageLib.get(components_item.src),[components_item, imageLib]);
   // console.log("dirname : ",__dirname)
   return (
