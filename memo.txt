@@ -21,3 +21,19 @@ context로 이미지를 저장해두면 속도 향상이 있을듯 함
 0.2.1
 글자색 안바뀌는 버그 수정
 여러가지 글자 옵션 추가함
+
+=================================================
+0.2.2
+자동 업데이트 기능 추가(윈도우만 가능)
+자동 업데이트를 하기 위해선 github releases에 파일들을 넣어야 함
+
+Windows
+- latest.yml
+- textbook_editor-Setup-O.O.O.exe
+
+Mac
+- latest-mac.yml
+- textbook_editor-O.O.O-arm64-mac.zip
+- textbook_editor-O.O.O-arm64.dmg
+
+파일명 잘 확인해야 함
