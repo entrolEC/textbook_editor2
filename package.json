@@ -1,6 +1,6 @@
 {
   "name": "textbook_editor2",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "private": true,
   "main": "public/Main.js",
   "homepage": "./",
@@ -76,7 +76,7 @@
   },
   "build": {
     "productName": "textbook_editor",
-    "appId": "com.electron.textbook_editor",
+    "appId": "com.electron.textbookeditor",
     "asar": false,
     "extends": null,
     "protocols": {

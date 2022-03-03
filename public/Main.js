@@ -66,7 +66,7 @@ autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
     
     dialog.showMessageBox(dialogOpts).then((returnValue) => {
         log.info("returnValue: ", returnValue.response)
-        if (returnValue.response === 1) autoUpdater.quitAndInstall()
+        if (returnValue.response === 0) autoUpdater.quitAndInstall()
     })
 })
 
@@ -91,7 +91,7 @@ app.on('ready', () => {
 
   // 자동 업데이트 등록
   if (!isDev) {
-    autoUpdater.checkForUpdates();
+    autoUpdater.checkForUpdatesAndNotify();
   }
 });
 
