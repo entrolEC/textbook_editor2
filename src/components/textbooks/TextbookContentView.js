@@ -25,6 +25,7 @@ import { CodeLanguageSelectBox } from './CodeLanguageSelectBox';
 import { ImageContent } from 'components/textbooks/ImageContent';
 import { DescContent } from 'components/textbooks/DescContent';
 
+import useInterval from 'helpers/useInterval';
 const URL = API_PROTOCOL + API_URL;
 
 const TextbookContentView = ({
@@ -42,12 +43,26 @@ const TextbookContentView = ({
     const[imageModalVisible, setImageModalVisible] = useState(false);
     const { addDescription, addImage, addCode, addTable, deleteDescription } = useContext(TextbookContext);
 
+    const [ isEditing, setIsEditing ] = useState(false);
+    const [ lastText, setLastText ] = useState('');
+    const [ lastparseData, setLastParseData ] = useState(null);
+
     useEffect(() => {
       console.log("selectedImageName : ", selectedImage);
     },[selectedImage])
 
+    useInterval(() => {
+      console.log("lastText: ",  lastText);
+      console.log("Text: ", text);
 
-
+      if (lastText != text) {
+        setLastParseData(parseData(data));
+        setIsEditing(true);
+      } else {
+        setIsEditing(false);
+      }
+      setLastText(text);
+    }, 2000);
 
       // const files = fs.readdirSync(dir)
 
@@ -67,6 +82,15 @@ const TextbookContentView = ({
 
     const handleText = (newText) => {
       setText(newText);
+    }
+
+    const handleFocus = () => {
+      setLastParseData(parseData(data));
+      setIsEditing(true);
+    }
+    
+    const handleBlur = () => {
+      setIsEditing(false);
     }
 
     const ButtonGroup = ({index}) => (
@@ -215,7 +239,7 @@ const TextbookContentView = ({
               <DisplayImage selectedImage={selectedImage} setSelectedImage={setSelectedImage}/>
             </Modal> */}
             
-            {parseData(data)}
+            {isEditing ? lastparseData : parseData(data)}
             <div style={{marginTop: "50px"}}>
               <hr></hr>
               이미지 선택 : 
@@ -223,7 +247,7 @@ const TextbookContentView = ({
               <DisplayImage selectedImage={selectedImage} setSelectedImage={setSelectedImage}/>
               <hr></hr>
               {/* <CustomToolbar/> */}
-              <Editor placeholder={"이곳에 desc 입력"} text={text} handleChange={handleText}/>
+              <Editor placeholder={"이곳에 desc 입력"} text={text} handleChange={handleText} handleFocus={handleFocus} handleBlur={handleBlur} />
               <hr></hr>
               <CodeLanguageSelectBox options={OPTIONS} defaultValue="python" setCodeLanguage={setCodeLanguage}></CodeLanguageSelectBox>;
               <Field

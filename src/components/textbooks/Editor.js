@@ -10,6 +10,8 @@ export const Editor = (props) => {
       <ReactQuill
         value={props.text || ''}
         onChange={props.handleChange}
+        onFocus={props.handleFocus}
+        onBlur={props.handleBlur}
         placeholder={props.placeholder}
         modules={modules}
         formats={formats}
