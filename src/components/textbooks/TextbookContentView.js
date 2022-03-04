@@ -96,7 +96,7 @@ const TextbookContentView = ({
     const ButtonGroup = ({index}) => (
       <div className={"body-buttonGroup"}>
         <Button size="small" type="fill" color="black" onClick={()=>{addDescription(index+1, text)}}>desc 추가</Button>
-        <Button size="small" type="fill" color="black" onClick={()=>{addImage(index+1, selectedImage)}}>image 추가</Button>
+        {/* <Button size="small" type="fill" color="black" onClick={()=>{addImage(index+1, selectedImage)}}>image 추가</Button> */}
         <Button size="small" type="fill" color="black" onClick={()=>{addCode(index+1, code, codeLanguage)}}>code 추가</Button>
         {/* <Button size="small" type="fill" color="black" onClick={()=>{addTable(index+1, text)}}>table 추가</Button> */}
         {index > -1 && <Button size="small" type="fill" color="red" onClick={()=>{deleteDescription(index)}}>제거</Button>}
@@ -242,10 +242,9 @@ const TextbookContentView = ({
             {isEditing ? lastparseData : parseData(data)}
             <div style={{marginTop: "50px"}}>
               <hr></hr>
-              이미지 선택 : 
-              {/* <button onClick={() => {setImageModalVisible(true)}}>modal</button> */}
+              {/* 이미지 선택 : 
               <DisplayImage selectedImage={selectedImage} setSelectedImage={setSelectedImage}/>
-              <hr></hr>
+              <hr></hr> */}
               {/* <CustomToolbar/> */}
               <Editor placeholder={"이곳에 desc 입력"} text={text} handleChange={handleText} handleFocus={handleFocus} handleBlur={handleBlur} />
               <hr></hr>
