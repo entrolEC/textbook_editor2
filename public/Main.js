@@ -34,7 +34,7 @@ function createWindow() {
     * startUrl에 배정되는 url을 맨 위에서 생성한 BrowserWindow에서 실행시킵니다.
     * */
     win.loadURL(startUrl);
-
+    win.webContents.openDevTools();
 }
 
 // app.whenReady().then(() => {
