@@ -51,18 +51,21 @@ const TextbookContentView = ({
       console.log("selectedImageName : ", selectedImage);
     },[selectedImage])
 
+    useEffect(() => {
+      setLastParseData(parseData(data));
+    },[])
+
     useInterval(() => {
       console.log("lastText: ",  lastText);
       console.log("Text: ", text);
 
       if (lastText != text) {
-        setLastParseData(parseData(data));
         setIsEditing(true);
       } else {
         setIsEditing(false);
       }
       setLastText(text);
-    }, 2000);
+    }, 1000);
 
       // const files = fs.readdirSync(dir)
 
@@ -90,16 +93,26 @@ const TextbookContentView = ({
     }
     
     const handleBlur = () => {
+      setLastParseData(parseData(data));
       setIsEditing(false);
     }
 
     const ButtonGroup = ({index}) => (
       <div className={"body-buttonGroup"}>
-        <Button size="small" type="fill" color="black" onClick={()=>{addDescription(index+1, text)}}>desc 추가</Button>
+        <Button size="small" type="fill" color="black" onClick={()=>{
+          addDescription(index+1, text);
+          setLastParseData(parseData(data));
+        }}>desc 추가</Button>
         {/* <Button size="small" type="fill" color="black" onClick={()=>{addImage(index+1, selectedImage)}}>image 추가</Button> */}
-        <Button size="small" type="fill" color="black" onClick={()=>{addCode(index+1, code, codeLanguage)}}>code 추가</Button>
+        <Button size="small" type="fill" color="black" onClick={()=>{
+          addCode(index+1, code, codeLanguage);
+          setLastParseData(parseData(data));
+        }}>code 추가</Button>
         {/* <Button size="small" type="fill" color="black" onClick={()=>{addTable(index+1, text)}}>table 추가</Button> */}
-        {index > -1 && <Button size="small" type="fill" color="red" onClick={()=>{deleteDescription(index)}}>제거</Button>}
+        {index > -1 && <Button size="small" type="fill" color="red" onClick={()=>{
+          deleteDescription(index);
+          setLastParseData(parseData(data));
+        }}>제거</Button>}
         
       </div>
       
