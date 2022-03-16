@@ -12,6 +12,6 @@ export const TextbookContext = createContext({
   addImage: () => {},
   addCode: () => {},
   addTable: () => {},
-  deleteDescription: () => {}
-
+  deleteDescription: () => {},
+  setDescription: () => {}
 });
