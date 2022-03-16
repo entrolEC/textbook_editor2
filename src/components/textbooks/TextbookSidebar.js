@@ -68,7 +68,7 @@ const TextbookSidebar = ({
       a.download = name;
       document.body.appendChild(a);
       a.click();
-      a.remove();
+      // a.remove();
       console.log(JSONBook)
     }
 

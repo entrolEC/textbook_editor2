@@ -26,7 +26,7 @@ import { ImageContext } from "contexts/ImageContext";
 
 import { saveTextbook, loadTextbook } from "helpers/electronFileSystem";
 
-import tutorial from "textbook/Textbook_lv0_0_tutorial/textbook1.json";
+import tutorial from "textbook/Textbook_lv0_0_tutorial/Textbook_lv0_0_tutorial.json";
 const NewClassroom = () =>{
     //===========================================USE API=============================================//
     // const [StudentInfoLoading, StudentInfoResolved, StudentInfoError, getStudentInfo] = useApi(getMyStudentInfo);
