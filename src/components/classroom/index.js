@@ -26,8 +26,7 @@ import { ImageContext } from "contexts/ImageContext";
 
 import { saveTextbook, loadTextbook } from "helpers/electronFileSystem";
 
-import tutorial from "textbook/Textbook_lv0_0_tutorial/Textbook_lv0_0_tutorial.json";
-
+import tutorial from "textbook/Textbook_lv0_0_tutorial/textbook1.json";
 const NewClassroom = () =>{
     //===========================================USE API=============================================//
     // const [StudentInfoLoading, StudentInfoResolved, StudentInfoError, getStudentInfo] = useApi(getMyStudentInfo);
@@ -255,14 +254,35 @@ const NewClassroom = () =>{
       forceUpdate();
     }
 
+    const setDescription = async (index, text) => {
+      let newBook = JSONBook
+      // console.log(index, text)
+      newBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].description = text
+      // console.log(newBook.textbook_contents[stepIndex].step_items[itemIndex].components[index].description)
+
+      // console.log(new_textbook)
+
+      // newBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 1);
+      // newBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, {
+      //   "type": "desc",
+      //   "description": text
+      // })
+
+      // console.log(newBook)
+
+      setJSONBook(newBook);
+      saveTextbook(newBook);
+      forceUpdate();
+    }
+
     const addImageLib = (key, value) => {
       console.log("image added", key);
       setImageLib((prev) => new Map([...prev, [key, value]]));
     };
 
     const textbookContextValue = useMemo(() => ({ 
-      stepIndex, itemIndex, setIndex, addDescription, addImage, addCode, addTable, deleteDescription, addStep, deleteStep, addItem, deleteItem}
-      ), [stepIndex, itemIndex, setIndex, addDescription, addImage, addCode, addTable, deleteDescription, addStep, deleteStep, addItem, deleteItem]);
+      stepIndex, itemIndex, setIndex, addDescription, addImage, addCode, addTable, deleteDescription, addStep, deleteStep, addItem, deleteItem, setDescription}
+      ), [stepIndex, itemIndex, setIndex, addDescription, addImage, addCode, addTable, deleteDescription, addStep, deleteStep, addItem, deleteItem, setDescription]);
 
     const imageContextValue = useMemo(() => ({ 
       imageLib, setImageLib, addImageLib
