@@ -15,7 +15,7 @@ export const DescContent = ({components_item, index, hoverItemIndex, setHoverIte
   const [item, setItem] = useState('');
   const [wantEdit, setWantEdit] = useState(false);
 
-  const { addDescription, addImage, addCode, addTable, deleteDescription, setDescription } = useContext(TextbookContext);
+  const { setDescription } = useContext(TextbookContext);
 
 
   useEffect(() => {
