@@ -172,6 +172,28 @@ const NewClassroom = () =>{
       forceUpdate();
     }
 
+    const setItem = (itemTitle, stepIndex, itemIndex) => {
+      let newBook = JSONBook;
+      newBook.textbook_contents[stepIndex].step_items[itemIndex].title = itemTitle;
+
+      console.log(newBook)
+
+      setJSONBook(newBook);
+      saveTextbook(newBook);
+      forceUpdate();
+    }
+
+    const setStep = (stepTitle, stepIndex) => {
+      let newBook = JSONBook;
+      newBook.textbook_contents[stepIndex].step_title = stepTitle;
+
+      console.log(newBook)
+
+      setJSONBook(newBook);
+      saveTextbook(newBook);
+      forceUpdate();
+    }
+
     const deleteStep = (stepIndex) => {
       let newBook = JSONBook;
       for(let i = stepIndex+1; i < newBook.textbook_contents.length; i++) {
@@ -281,8 +303,8 @@ const NewClassroom = () =>{
     };
 
     const textbookContextValue = useMemo(() => ({ 
-      stepIndex, itemIndex, setIndex, addDescription, addImage, addCode, addTable, deleteDescription, addStep, deleteStep, addItem, deleteItem, setDescription}
-      ), [stepIndex, itemIndex, setIndex, addDescription, addImage, addCode, addTable, deleteDescription, addStep, deleteStep, addItem, deleteItem, setDescription]);
+      stepIndex, itemIndex, setIndex, addDescription, addImage, addCode, addTable, deleteDescription, addStep, setStep, deleteStep, addItem, setItem, deleteItem, setDescription}
+      ), [stepIndex, itemIndex, setIndex, addDescription, addImage, addCode, addTable, deleteDescription, addStep, setStep, deleteStep, addItem, setItem, deleteItem, setDescription]);
 
     const imageContextValue = useMemo(() => ({ 
       imageLib, setImageLib, addImageLib

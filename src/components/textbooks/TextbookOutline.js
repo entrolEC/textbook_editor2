@@ -13,7 +13,7 @@ const TextbookOutline = ({
 }) =>{
     const [hoverStepIndex, setHoverStepIndex] = useState(null);
     const [hoverItemIndex, setHoverItemIndex] = useState(null);
-    const { setIndex, addStep, deleteStep, addItem, deleteItem } = useContext(TextbookContext);
+    const { setIndex, addStep, setStep, deleteStep, addItem, setItem, deleteItem } = useContext(TextbookContext);
 
     const stepAddClick = (stepIndex) => {
       smalltalk
@@ -27,12 +27,36 @@ const TextbookOutline = ({
       });
     }
 
+    const stepChangeClick = (stepIndex) => {
+      smalltalk
+      .prompt('Question', '바꿀 제목을 입력해주세요.', '')
+      .then((value) => {
+          console.log(value);
+          setStep(value, stepIndex)
+      })
+      .catch(() => {
+          console.log('cancel');
+      });
+    }
+
     const itemAddClick = (stepIndex, itemIndex) => {
       smalltalk
       .prompt('Question', '아이템 제목을 입력해주세요.', '')
       .then((value) => {
           console.log(value);
           addItem(value, stepIndex, itemIndex + 1)
+      })
+      .catch((e) => {
+          console.log(e)
+      });
+    }
+
+    const itemChangeClick = (stepIndex, itemIndex) => {
+      smalltalk
+      .prompt('Question', '바꿀 제목을 입력해주세요.', '')
+      .then((value) => {
+          console.log(value);
+          setItem(value, stepIndex, itemIndex)
       })
       .catch((e) => {
           console.log(e)
@@ -57,6 +81,7 @@ const TextbookOutline = ({
                         <div>
                           <button onClick={() => {itemAddClick(stepIndex, itemIndex)}}>아이템 추가</button>
                           <button onClick={() => {deleteItem(stepIndex, itemIndex)}}>아이템 제거</button>
+                          <button onClick={() => {itemChangeClick(stepIndex, itemIndex)}}>아이템 이름 변경</button>
                         </div>
                       }
                     </div>
@@ -73,6 +98,7 @@ const TextbookOutline = ({
                         <div>
                           <button onClick={() => {stepAddClick(stepIndex)}}>스탭 추가</button>
                           <button onClick={() => {deleteStep(stepIndex)}}>스탭 제거</button>
+                          <button onClick={() => {stepChangeClick(stepIndex)}}>스탭 이름 변경</button>
                         </div>
                       }
                   </div>
