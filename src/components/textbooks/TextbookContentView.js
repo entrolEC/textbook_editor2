@@ -244,6 +244,8 @@ const TextbookContentView = ({
       { value: "cpp", name: "cpp" },
       { value: "java", name: "java" },
       { value: "javascript", name: "javascript" },
+      { value: "html", name: "html" },
+      { value: "css", name: "css" }
     ];
     
     return (
