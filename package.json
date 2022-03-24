@@ -45,9 +45,12 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "react-start": "BROWSER=none yarn start",
+    "react-start": "set BROWSER=none && yarn start",
+    "//": "윈도우즈 유저의경우 위 커맨드를 \"set BROWSER=none && yarn start\" 로 사용해주셔야합니다.",
+
+    "electron-start": "set ELECTRON_START_URL=http://localhost:3000 && electron .",
     "//": "윈도우즈 유저의경우 위 커맨드를 \"set ELECTRON_START_URL=http://localhost:3000 && electron .\" 이렇게 사용해주셔야합니다.",
-    "electron-start": "ELECTRON_START_URL=http://localhost:3000 electron .",
+
     "electron-pack": "yarn build && electron-builder build -c.extraMetadata.main=build/Main.js",
     "deploy": "electron-builder --windows nsis:ia32",
     "deploy:mac": "electron-builder --mac"
