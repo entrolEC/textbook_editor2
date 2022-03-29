@@ -1,7 +1,6 @@
 {
   "name": "textbook_editor2",
-  "version": "0.4.3",
-  "private": true,
+  "version": "0.4.4",
   "main": "public/Main.js",
   "homepage": "./",
   "dependencies": {
@@ -91,10 +90,8 @@
     "publish": [
       {
         "provider": "github",
-        "owner": "qoquma",
-        "private": true,
-        "repo": "textbook_editor2",
-        "token": "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"
+        "owner": "entrolEC",
+        "repo": "textbook_editor2"
       }
     ],
     "win": {
