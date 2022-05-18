@@ -25,6 +25,7 @@
     "react-dom": "16.8.6",
     "react-html-parser": "2.0.2",
     "react-image-crop": "^9.1.1",
+    "react-jsx-parser": "^1.29.0",
     "react-markdown": "7.0.0",
     "react-quill": "^1.3.5",
     "react-scripts": "3.2.0",
@@ -44,12 +45,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "react-start": "set BROWSER=none && yarn start",
-    "//": "윈도우즈 유저의경우 위 커맨드를 \"set BROWSER=none && yarn start\" 로 사용해주셔야합니다.",
-
-    "electron-start": "set ELECTRON_START_URL=http://localhost:3000 && electron .",
+    "react-start": "BROWSER=none yarn start",
     "//": "윈도우즈 유저의경우 위 커맨드를 \"set ELECTRON_START_URL=http://localhost:3000 && electron .\" 이렇게 사용해주셔야합니다.",
-
+    "electron-start": "ELECTRON_START_URL=http://localhost:3000 electron .",
     "electron-pack": "yarn build && electron-builder build -c.extraMetadata.main=build/Main.js",
     "deploy": "electron-builder --windows nsis:ia32",
     "deploy:mac": "electron-builder --mac"

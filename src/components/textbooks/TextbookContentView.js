@@ -24,6 +24,7 @@ import { CodeLanguageSelectBox } from './CodeLanguageSelectBox';
 
 import { ImageContent } from 'components/textbooks/ImageContent';
 import { DescContent } from 'components/textbooks/DescContent';
+import { QuizContent } from 'components/textbooks/QuizContent';
 
 import useInterval from 'helpers/useInterval';
 const URL = API_PROTOCOL + API_URL;
@@ -41,11 +42,12 @@ const TextbookContentView = ({
     const[selectedImage, setSelectedImage] = useState(null);
     const [hoverItemIndex, setHoverItemIndex] = useState(null);
     const[imageModalVisible, setImageModalVisible] = useState(false);
-    const { addDescription, addImage, addCode, addTable, deleteDescription } = useContext(TextbookContext);
+    const { addDescription, addImage, addCode, addQuiz, addTable, deleteDescription } = useContext(TextbookContext);
 
     const [ isEditing, setIsEditing ] = useState(false);
     const [ lastText, setLastText ] = useState('');
     const [ lastparseData, setLastParseData ] = useState(null);
+    const [ quizText, setQuizText ] = useState("for <input /> in <input />");
 
     useEffect(() => {
       console.log("selectedImageName : ", selectedImage);
@@ -109,6 +111,10 @@ const TextbookContentView = ({
           setLastParseData(parseData(data));
         }}>code 추가</Button>
         {/* <Button size="small" type="fill" color="black" onClick={()=>{addTable(index+1, text)}}>table 추가</Button> */}
+        <Button size="small" type="fill" color="black" onClick={()=>{
+          addQuiz(index+1, quizText, "1\n2\n3", codeLanguage);
+          setLastParseData(parseData(data));
+        }}>quiz 추가</Button>
         {index > -1 && <Button size="small" type="fill" color="red" onClick={()=>{
           deleteDescription(index);
           setLastParseData(parseData(data));
@@ -188,6 +194,21 @@ const TextbookContentView = ({
                     {hoverItemIndex === index && <ButtonGroup index={index}/>}
                     </div>
                 );
+            }
+            else if (type === "quiz"){
+              count_for_key += 1;
+              return (
+                <>
+                  <QuizContent
+                    components_item={components_item} 
+                    index={index} 
+                    hoverItemIndex={hoverItemIndex}
+                    setHoverItemIndex={setHoverItemIndex} 
+                    count_for_key={count_for_key} 
+                    ButtonGroup={ButtonGroup}
+                  />
+                </>
+              );
             }
             else if (type === "image") {
                 count_for_key += 1;

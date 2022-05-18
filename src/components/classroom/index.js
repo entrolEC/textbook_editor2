@@ -265,6 +265,33 @@ const NewClassroom = () =>{
       forceUpdate();
     }
 
+    const addQuiz = (index, quiz, answer, language) => {
+      let data = quiz;
+
+      let cnt = 0;
+      let idx = data.indexOf("<input />");
+      while (idx != -1) {
+        data = data.replace("<input />", `<input value={item} onChange={handleChange} />`);
+        idx = data.indexOf("<input />", idx + 1);
+      }
+      console.log(data);
+
+      let newBook = JSONBook;
+      newBook.textbook_contents[stepIndex].step_items[itemIndex].components.splice(index, 0, {
+        "type": "quiz",
+        "language": language,
+        "quiz": data,
+        "inputCount": cnt,
+        "answer": answer
+      })
+
+      console.log(newBook)
+
+      setJSONBook(newBook);
+      saveTextbook(newBook);
+      forceUpdate();
+    }
+
     const addTable = (index) => {
       let newBook = JSONBook;
     }
@@ -303,8 +330,8 @@ const NewClassroom = () =>{
     };
 
     const textbookContextValue = useMemo(() => ({ 
-      stepIndex, itemIndex, setIndex, addDescription, addImage, addCode, addTable, deleteDescription, addStep, setStep, deleteStep, addItem, setItem, deleteItem, setDescription}
-      ), [stepIndex, itemIndex, setIndex, addDescription, addImage, addCode, addTable, deleteDescription, addStep, setStep, deleteStep, addItem, setItem, deleteItem, setDescription]);
+      stepIndex, itemIndex, setIndex, addDescription, addImage, addCode, addQuiz, addTable, deleteDescription, addStep, setStep, deleteStep, addItem, setItem, deleteItem, setDescription}
+      ), [stepIndex, itemIndex, setIndex, addDescription, addImage, addCode, addQuiz, addTable, deleteDescription, addStep, setStep, deleteStep, addItem, setItem, deleteItem, setDescription]);
 
     const imageContextValue = useMemo(() => ({ 
       imageLib, setImageLib, addImageLib

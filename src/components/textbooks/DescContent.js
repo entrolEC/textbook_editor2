@@ -19,7 +19,7 @@ export const DescContent = ({components_item, index, hoverItemIndex, setHoverIte
 
 
   useEffect(() => {
-    if (!item || item != components_item.description) {
+    if (!item || item !== components_item.description) {
       setItem(components_item.description);
       console.log("setItem");
     }
@@ -59,8 +59,6 @@ export const DescContent = ({components_item, index, hoverItemIndex, setHoverIte
         {hoverItemIndex === index && <ButtonGroup index={index}/>}
         </>
       }
-
-        
     </div>
   );
 }
